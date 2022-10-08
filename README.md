@@ -2,9 +2,9 @@
 
 ## À propos
 
-Network infrastructure décrit par le code l'infrastructure à provisionner pour les éléments réseaux de la Cartographie Nationale.
+Network infrastructure décrit par le code l'infrastructure à provisionner pour les éléments réseaux d'Average
 
-> Ce dépôt n'est pas utile pour faire fonctionner la Cartographie Nationale en local.
+> Ce dépôt n'est pas utile pour faire fonctionner Average en local.
 
 ## Table des matières
 
