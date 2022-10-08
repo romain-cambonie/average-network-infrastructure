@@ -1,7 +1,7 @@
 terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "cartographie-nationale"
+    organization = "average"
 
     workspaces {
       prefix = "network-"
@@ -11,7 +11,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.11"
+      version = "~> 4.33"
     }
   }
 }

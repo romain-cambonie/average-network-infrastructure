@@ -12,7 +12,7 @@ locals {
       service_class     = "bronze"
     }
     organization : {
-      client = "anct"
+      client = "average"
     }
     stakeholders : {
       business_owner  = "xavier.norris"
@@ -28,7 +28,7 @@ locals {
   projectTitle = title(replace(local.product_information.context.project, "_", " "))
   layerTitle   = title(replace(local.product_information.context.layer, "_", " "))
   serviceTitle = title(replace(local.product_information.context.service, "_", " "))
-  domainNames  = ["average.qthunder-arrow.cloud"]
+  domainNames  = ["average.thunder-arrow.cloud"]
 }
 
 locals {
