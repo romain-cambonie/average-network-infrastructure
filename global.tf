@@ -28,8 +28,10 @@ locals {
   projectTitle = title(replace(local.product_information.context.project, "_", " "))
   layerTitle   = title(replace(local.product_information.context.layer, "_", " "))
   serviceTitle = title(replace(local.product_information.context.service, "_", " "))
-  domainNames  = ["thunder-arrow.cloud"]
+  domainName  = "thunder-arrow.cloud"
 }
+
+
 
 locals {
   service = {

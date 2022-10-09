@@ -10,13 +10,13 @@ locals {
   s3_origin_id = "${local.service.average.client.name}_s3"
 }
 
-resource "aws_cloudfront_distribution" "average" {
+resource "aws_cloudfront_distribution" "average_cloudfront" {
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
   price_class         = "PriceClass_100"
 
-  aliases = local.domainNames
+  aliases = [join("-",[local.service.average.name, local.domainName])]
 
   custom_error_response {
     error_caching_min_ttl = 7200
