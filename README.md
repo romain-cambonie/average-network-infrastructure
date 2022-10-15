@@ -1,5 +1,12 @@
 # Network infrastructure
 
+## Missing for True Automation (changes to code required)
+
+- Get locals var values from inputs var : 
+  - parentDomain.name  = "thunder-arrow.cloud"
+  - parentDomain.delegationSetId = "N01547477TAMF3FNTA05"
+  
+
 ## À propos
 
 Network infrastructure décrit par le code l'infrastructure à provisionner pour les éléments réseaux d'Average
