@@ -2,9 +2,9 @@ data "aws_s3_bucket" "client" {
   bucket = replace("${local.product_information.context.project}_${local.service.average.client.name}", "_", "-")
 }
 
-data "aws_acm_certificate" "thunder_arrow_cloud_acm_certificate" {
-  provider = "aws.us-east-1"
-  domain = local.parentDomain.name
+data "aws_acm_certificate" "hosting_domain_acm_certificate" {
+  provider = aws.us-east-1
+  domain = local.hostingZone.certificateDomain
   statuses = ["ISSUED"]
 }
 
@@ -22,7 +22,7 @@ resource "aws_cloudfront_distribution" "average_cloudfront" {
   default_root_object = "index.html"
   price_class         = "PriceClass_100"
 
-  aliases = [join("-",[local.service.average.name, local.parentDomain.name])]
+  //aliases = [join("-",[local.service.average.name, local.hostingZone.name])]
 
   custom_error_response {
     error_caching_min_ttl = 7200
@@ -68,7 +68,7 @@ resource "aws_cloudfront_distribution" "average_cloudfront" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = data.aws_acm_certificate.thunder_arrow_cloud_acm_certificate.arn
+    acm_certificate_arn      = data.aws_acm_certificate.hosting_domain_acm_certificate.arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2021"
   }

@@ -28,9 +28,9 @@ locals {
   projectTitle = title(replace(local.product_information.context.project, "_", " "))
   layerTitle   = title(replace(local.product_information.context.layer, "_", " "))
   serviceTitle = title(replace(local.product_information.context.service, "_", " "))
-  parentDomain = {
+  hostingZone = {
     name = "thunder-arrow.cloud"
-    delegationSetId = "N01547477TAMF3FNTA05"
+    certificateDomain = "thunder-arrow.cloud"
   }
 }
 

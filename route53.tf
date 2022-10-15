@@ -1,12 +1,16 @@
+data "aws_route53_zone" "hosting_zone" {
+  name  = local.hostingZone.name
+}
+
 # TODO We could do better by setting the delegation_set_id from an input var
 # We would need to save an output thunder_arrow_cloud_delegation_set_id from the https://github.com/romain-cambonie/thunder-network-infrastructure repository
 # and set it up as a workspace discoverable variable (through the api)
 # var.thunder_arrow_cloud_delegation_set_id
-resource "aws_route53_zone" "average_zone" {
-  name     = join(".", [local.service.average.name, local.parentDomain.name])
-  delegation_set_id = local.parentDomain.delegationSetId
-  tags     = local.tags
-}
+//resource "aws_route53_zone" "average_zone" {
+//  name     = join(".", [local.service.average.name, local.parentDomain.name])
+//  delegation_set_id = local.parentDomain.delegationSetId
+//  tags     = local.tags
+//}
 
 //resource "aws_route53_record" "average_name_servers_record" {
 //  //for_each        = toset(local.parentDomainNames)
@@ -42,8 +46,8 @@ resource "aws_route53_zone" "average_zone" {
 
 resource "aws_route53_record" "average_record_ipv4" {
   //for_each = toset(local.parentDomainNames)
-  name     = aws_route53_zone.average_zone.name
-  zone_id  = aws_route53_zone.average_zone.zone_id
+  name     = join(".", [local.service.average.name, data.aws_route53_zone.hosting_zone.name])
+  zone_id  = data.aws_route53_zone.hosting_zone.zone_id
   type     = "A"
 
   alias {
@@ -55,8 +59,8 @@ resource "aws_route53_record" "average_record_ipv4" {
 
 resource "aws_route53_record" "average_record_ipv6" {
   //for_each = toset(local.parentDomainNames)
-  name     = aws_route53_zone.average_zone.name
-  zone_id  = aws_route53_zone.average_zone.zone_id
+  name     = join(".", [local.service.average.name, data.aws_route53_zone.hosting_zone.name])
+  zone_id  = data.aws_route53_zone.hosting_zone.zone_id
   type     = "AAAA"
 
   alias {
