@@ -22,7 +22,7 @@ resource "aws_cloudfront_distribution" "average_cloudfront" {
   default_root_object = "index.html"
   price_class         = "PriceClass_100"
 
-  //aliases = [join("-",[local.service.average.name, local.hostingZone.name])]
+  aliases = [join(".",[local.service.average.name, local.hostingZone.name])]
 
   custom_error_response {
     error_caching_min_ttl = 7200
@@ -51,6 +51,8 @@ resource "aws_cloudfront_distribution" "average_cloudfront" {
     target_origin_id       = local.s3_origin_id
     viewer_protocol_policy = "redirect-to-https"
 
+    trusted_signers = ["self"]
+
     forwarded_values {
       query_string = false
 
@@ -65,6 +67,7 @@ resource "aws_cloudfront_distribution" "average_cloudfront" {
       restriction_type = "whitelist"
       locations        = ["FR"]
     }
+
   }
 
   viewer_certificate {
