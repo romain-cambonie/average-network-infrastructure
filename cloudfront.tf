@@ -61,11 +61,11 @@ resource "aws_cloudfront_distribution" "average_cloudfront" {
       }
     }
 
-    lambda_function_association {
-      event_type   = "viewer-request"
-      lambda_arn   = "arn:aws:lambda:us-east-1:675617695436:function:average-cognito:5"
-      include_body = false
-    }
+//    lambda_function_association {
+//      event_type   = "viewer-request"
+//      lambda_arn   = "arn:aws:lambda:us-east-1:675617695436:function:average-cognito:4"
+//      include_body = false
+//    }
   }
 
   restrictions {
